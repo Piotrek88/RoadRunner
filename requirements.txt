@@ -9,3 +9,4 @@ pydantic
 ipython
 itables
 langfuse
+pycaret
