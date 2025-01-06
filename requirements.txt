@@ -1,0 +1,11 @@
+streamlit
+pandas
+joblib
+python-dotenv
+openai
+numpy
+instructor
+pydantic
+ipython
+itables
+langfuse
