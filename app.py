@@ -30,7 +30,7 @@ def get_info_langfuse_observed(user_input, model="gpt-4o"):
     prompt = """
     Wyciagnij wskazane przeze mnie dane z tekstu w odpowiednich formatach.
     Zwróc szczególna uwage na określenie Płci: jeżeli nie bedzie napisane: jestem kobieta/meżczyzna, wartość Płeć wywnioskuj z np. podanego imienia np. Grzegorz = Mężczyzna, Natalia = Kobieta lub zwrotu, urodziłam się = Kobieta, urodziłem się = Mężczyzna.
-    Zwróc "5 km Czas" odczytująć dane 15:30 , 15;30, 15-30 jako "15:30" lub pisane słownie piętnascie minut i trzydziesci sekund oraz gdy ktoś poda dane np. na wiekszym dystansie czyli na 15km 48min to wyciagnij z tych danych średnia na 5km poprzez 48 / 3 = 16min. 
+    Zwróc "5 km Czas" odczytująć dane 15:30 , 15;30, 15-30 jako "15:30" lub pisane słownie piętnascie minut i trzydziesci sekund oraz gdy ktoś poda dane np. na wiekszym dystansie czyli na 15km 48min to wyciagnij z tych danych średnia na 5km poprzez 48 / 3 = 16min.
     Zwróć wartość jako obiekt JSON z następującymi kluczami:
     "5 km Czas" - as a string,
     "Rocznik" -  ma byc interpretowany jako liczba całkowita integer,
