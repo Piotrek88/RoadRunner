@@ -132,7 +132,7 @@ def convert_seconds_to_hhmmss(total_seconds):
 ###MAIN###
 
 def main():
-    st.title("Marathon Road Runner")
+    st.title("Half Marathon Road Runner")
     
     user_input = st.text_area("Przedstaw się, napisz w którym roku się urodziłeś/aś oraz w jakim czasie przebiegniesz dystans 5km?", max_chars=120)
 
