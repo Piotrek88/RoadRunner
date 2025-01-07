@@ -27,21 +27,17 @@ if "OPENAI_API_KEY" not in st.session_state:
         st.session_state["OPENAI_API_KEY"] = os.environ["OPENAI_API_KEY"]
     else:
         st.info("Podaj klucz API aby korzystać z Marathon Road Runner")
-        # Czeka, aż użytkownik wprowadzi klucz i zatwierdzi go przyciskiem
         api_input = st.text_input("Klucz API", type="password")
         if api_input:
-            # Ustawienie klucza w sesji jako sposób na przeładowanie
             st.session_state["OPENAI_API_KEY"] = api_input
-            st.session_state["key_submitted"] = True  # Dodatkowy stan, aby wywołać rerun
+            st.session_state["key_submitted"] = True  
 
 if not st.session_state.get("OPENAI_API_KEY"):
     st.stop()
 
-# Ponowne załadowanie następuje, kiedy ten blok się wykona
 if st.session_state.get("key_submitted"):
-    # Usuń dodatkowy stan, co spowoduje załadowanie klienta z nowym kluczem
     del st.session_state["key_submitted"]
-    st.rerun()  # Użyj tego, jeśli jest dostępne
+    st.rerun()  
 
 
 openai_client = OpenAI(api_key=st.session_state["OPENAI_API_KEY"])
