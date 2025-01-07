@@ -15,7 +15,7 @@ from langfuse.openai import OpenAI as LangfuseOpenAI
 from langfuse.decorators import observe
 from datetime import datetime
 import time
-import pycaret
+from pycaret import load_model
 
 load_dotenv()
 init_notebook_mode(all_interactive=True)
@@ -24,17 +24,16 @@ model_runner = joblib.load('marathon_pipeline_regression_model.pkl')
 # Kod zabezpieczający klucz API
 if not st.session_state.get("openai_api_key"):
     if "OPENAI_API_KEY" in load_dotenv:
-        st.session_state["openai_api_key"] = load_dotenv["OPENAI_API_KEY"]
+        st.session_state["OPENAI_API_KEY"] = load_dotenv["OPENAI_API_KEY"]
     else:
         st.info("Podaj klucz API aby korzystać z Creative Paintings")
-        st.session_state["openai_api_key"] = st.text_input("Klucz API", type="password")
-        if st.session_state["openai_api_key"]:
+        st.session_state["OPENAI_API_KEY"] = st.text_input("Klucz API", type="password")
+        if st.session_state["OPENAI_API_KEY"]:
             st.rerun()
-if not st.session_state.get("openai_api_key"):
+if not st.session_state.get("OPENAI_API_KEY"):
     st.stop()
 
-openai_client = OpenAI(api_key=st.session_state["openai_api_key"])
-
+openai_client = OpenAI(api_key=st.session_state["OPENAI_API_KEY"])
 instructor_openai_client = instructor.from_openai(openai_client)
 llm_client = LangfuseOpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
