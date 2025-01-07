@@ -15,7 +15,7 @@ from langfuse.openai import OpenAI as LangfuseOpenAI
 from langfuse.decorators import observe
 from datetime import datetime
 import time
-from pycaret import load_model
+import pycaret
 
 load_dotenv()
 init_notebook_mode(all_interactive=True)
