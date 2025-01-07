@@ -20,6 +20,19 @@ import pycaret
 load_dotenv()
 init_notebook_mode(all_interactive=True)
 model_runner = joblib.load('marathon_pipeline_regression_model.pkl')
+
+# Kod zabezpieczający klucz API
+if "OPENAI_API_KEY" not in st.session_state:
+    if "OPENAI_API_KEY" in os.environ:
+        st.session_state["OPENAI_API_KEY"] = os.environ["OPENAI_API_KEY"]
+    else:
+        st.info("Podaj klucz API aby korzystać z Marathon Road Runner")
+        st.session_state["OPENAI_API_KEY"] = st.text_input("Klucz API", type="password")
+        if st.session_state["OPENAI_API_KEY"]:
+            st.rerun()
+if not st.session_state.get("OPENAI_API_KEY"):
+    st.stop()
+
 openai_client = OpenAI(api_key=st.session_state["OPENAI_API_KEY"])
 instructor_openai_client = instructor.from_openai(openai_client)
 llm_client = LangfuseOpenAI(api_key=st.session_state["OPENAI_API_KEY"])
@@ -126,7 +139,7 @@ if "OPENAI_API_KEY" not in st.session_state:
         st.info("Podaj klucz API aby korzystać z Marathon Road Runner")
         st.session_state["OPENAI_API_KEY"] = st.text_input("Klucz API", type="password")
         if st.session_state["OPENAI_API_KEY"]:
-            st.rerun()
+                st.rerun()
 if not st.session_state.get("OPENAI_API_KEY"):
     st.stop()
 
