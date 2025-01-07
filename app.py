@@ -126,7 +126,7 @@ if "OPENAI_API_KEY" not in st.session_state:
         st.info("Podaj klucz API aby korzystać z Marathon Road Runner")
         st.session_state["OPENAI_API_KEY"] = st.text_input("Klucz API", type="password")
         if st.session_state["OPENAI_API_KEY"]:
-                st.rerun()
+            st.rerun()
 if not st.session_state.get("OPENAI_API_KEY"):
     st.stop()
 
