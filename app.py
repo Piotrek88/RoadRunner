@@ -35,7 +35,7 @@ if not st.session_state.get("OPENAI_API_KEY"):
 
 openai_client = OpenAI(api_key=st.session_state["OPENAI_API_KEY"])
 instructor_openai_client = instructor.from_openai(openai_client)
-llm_client = LangfuseOpenAI(api_key=st.session_state("OPENAI_API_KEY"))
+llm_client = LangfuseOpenAI(api_key=st.session_state["OPENAI_API_KEY"])
 
 
 @observe()
